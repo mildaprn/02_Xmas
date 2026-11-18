@@ -11,6 +11,15 @@
 <meta property="og:title" content="Lukos laiškas Kalėdų Seneliui">
 <meta property="og:description" content="Perskaityk Lukos laišką ir rezervuok dovaną iš jos norų sąrašo.">
 <meta property="og:locale" content="lt_LT">
+<script>
+  /* Set the theme before first paint so the page does not flash light: saved choice, else the device setting. */
+  (function () {
+    var t = null;
+    try { t = localStorage.getItem("luka_theme"); } catch (e) {}
+    if (t !== "dark" && t !== "light") t = (window.matchMedia && matchMedia("(prefers-color-scheme: dark)").matches) ? "dark" : "light";
+    document.documentElement.setAttribute("data-theme", t);
+  })();
+</script>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Nunito:wght@400;600;800&display=swap">
 <style>
   /* Layout: one cream letter sheet with a red-and-green candy-stripe border, set on a warm desk.
@@ -137,6 +146,36 @@
   .panel p { margin: 4px 0 10px; }
 
 
+  /* Dark mode: same layout, evening colours. Chosen with the toggle button (or the device setting on first visit). */
+  html[data-theme="dark"] { color-scheme: dark; }
+  :root[data-theme="dark"] {
+    --desk: #17161d;
+    --paper: #262633;
+    --paper-line: rgba(255, 255, 255, .13);
+    --ink: #ece6d6;
+    --ink-soft: #a9a7bd;
+    --stripe-gap: #2f2d3b;
+    --card: #2f2f3f;
+    --taken: #9a937f;
+  }
+  [data-theme="dark"] .card { border-color: rgba(255, 255, 255, .15); }
+  [data-theme="dark"] .panel { border-color: rgba(255, 255, 255, .15); }
+  [data-theme="dark"] .chip[aria-pressed="true"],
+  [data-theme="dark"] .pill.mine,
+  [data-theme="dark"] .toast { color: #17161d; }
+  [data-theme="dark"] .pill.free { background: #1f3a2b; color: #bfe8cf; }
+  [data-theme="dark"] .pill.taken { background: #3a3848; color: #cfc9b8; }
+  [data-theme="dark"] .gift-link { color: #26305c; }
+  [data-theme="dark"] .small-btn.out { color: #ff8f86; border-color: #ff8f86; }
+  [data-theme="dark"] .photo { color: #26305c; }
+
+  .theme-toggle {
+    position: fixed; top: calc(10px + env(safe-area-inset-top, 0px)); right: max(10px, env(safe-area-inset-right, 0px)); z-index: 10;
+    width: 44px; height: 44px; border-radius: 50%; cursor: pointer; font-size: 22px; line-height: 1;
+    background: var(--card); color: var(--ink); border: 2px solid var(--ink-soft);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, .25);
+  }
+
   @media (max-width: 520px) {
     :root { --lh: 38px; }
     .sheet { padding: 20px 16px 18px; }
@@ -153,6 +192,7 @@
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><filter id="wobble" x="-10%" y="-10%" width="120%" height="120%"><feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="7" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="5"/></filter></svg>
+<button class="theme-toggle" id="theme-toggle" type="button"></button>
 <main class="frame"><div class="sheet" id="app"></div></main>
 <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
 
@@ -398,6 +438,21 @@
     window.scrollTo(0, 0);
   }
   window.addEventListener("hashchange", route);
+
+  /* ---------- Dark mode toggle ---------- */
+  var $theme = document.getElementById("theme-toggle");
+  function showTheme() {
+    var dark = document.documentElement.getAttribute("data-theme") === "dark";
+    $theme.textContent = dark ? "☀️" : "🌙";
+    $theme.setAttribute("aria-label", dark ? "Įjungti šviesų režimą" : "Įjungti tamsų režimą");
+  }
+  $theme.addEventListener("click", function () {
+    var next = document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark";
+    document.documentElement.setAttribute("data-theme", next);
+    lsSet("luka_theme", next);
+    showTheme();
+  });
+  showTheme();
 
   /* ---------- Start ---------- */
   route();

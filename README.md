@@ -32,6 +32,7 @@ A small web app in Lithuanian with two parts: a handwritten-style letter from Lu
 - Family members only see "Rezervuota" (reserved). The database never sends names or secret codes to the website.
 - The page asks the database for the list every 5 seconds and right after any change.
 - Parents open the Supabase Table Editor to see who reserved what, and delete a row to clear a reservation.
+- A round moon/sun button in the top-right corner switches between light and dark mode. On the first visit the page follows the phone's setting; after that it remembers the choice in that browser (`localStorage` key `luka_theme`).
 
 ```
 Family phone → website (site/) → Supabase functions → table "reservations"
