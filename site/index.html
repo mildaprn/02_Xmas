@@ -1,0 +1,415 @@
+<!doctype html>
+<html lang="lt">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="referrer" content="no-referrer">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Lukos laiškas Seneliui</title>
+<meta name="description" content="Luka parašė laišką Kalėdų Seneliui. Pasirink dovaną iš jos sąrašo ir ją rezervuok.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Lukos laiškas Kalėdų Seneliui">
+<meta property="og:description" content="Perskaityk Lukos laišką ir rezervuok dovaną iš jos norų sąrašo.">
+<meta property="og:locale" content="lt_LT">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Nunito:wght@400;600;800&display=swap">
+<style>
+  /* Layout: one cream letter sheet with a red-and-green candy-stripe border, set on a warm desk.
+     Two views on the same sheet: the letter, then the wish list. */
+  :root {
+    --desk: #e6d9c0;
+    --paper: #f8eed8;
+    --paper-line: rgba(70, 60, 40, .22);
+    --ink: #26305c;
+    --ink-soft: #5b6285;
+    --red: #c4332d;
+    --green: #2e7a4f;
+    --stripe-gap: #f6ecd6;
+    --card: #fffaf0;
+    --ok: #2e7a4f;
+    --taken: #8a7f6a;
+    --hand: "Caveat", "Segoe Print", "Bradley Hand", cursive;
+    --text: "Nunito", system-ui, -apple-system, "Segoe UI", sans-serif;
+    --lh: 44px;
+    color-scheme: light;
+  }
+  * { box-sizing: border-box; }
+  html { color-scheme: light; }
+  body {
+    background: var(--desk);
+    color: var(--ink);
+    font-family: var(--text);
+    font-size: 16px;
+    line-height: 1.5;
+    padding-block: 20px 40px;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+  }
+  .frame {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 14px;
+    background: repeating-linear-gradient(135deg,
+      var(--red) 0 14px, var(--stripe-gap) 14px 24px,
+      var(--green) 24px 38px, var(--stripe-gap) 38px 48px);
+    box-shadow: 0 10px 24px rgba(60, 45, 20, .25);
+  }
+  .sheet {
+    background: var(--paper);
+    padding: 28px 28px 24px;
+    min-width: 0;
+  }
+  h1, h2 { font-family: var(--hand); font-weight: 700; margin: 0; line-height: 1.1; text-wrap: balance; }
+  h1 { font-size: 46px; }
+  h2 { font-size: 40px; }
+  .hand { font-family: var(--hand); font-weight: 500; font-size: 28px; line-height: var(--lh); }
+
+  /* Lined letter paper */
+  .lined {
+    font-family: var(--hand); font-weight: 500; font-size: 28px; line-height: var(--lh);
+    background-image: repeating-linear-gradient(to bottom, transparent 0, transparent calc(var(--lh) - 2px), var(--paper-line) calc(var(--lh) - 2px), var(--paper-line) var(--lh));
+    margin-top: 10px;
+  }
+  .lined p { margin: 0 0 var(--lh); }
+  .lined ul { margin: 0 0 var(--lh); padding-left: 1.2em; }
+  .lined li { margin: 0; }
+  .lined .sig { margin: 0; text-align: right; font-size: 34px; font-weight: 700; transform: rotate(-3deg); transform-origin: right center; }
+  .tilt-a { transform: rotate(-.6deg); } .tilt-b { transform: rotate(.5deg); }
+
+  .doodles { display: flex; justify-content: space-between; align-items: flex-end; margin-top: 18px; gap: 12px; }
+  .doodles svg { width: 84px; height: auto; flex: none; overflow: visible; }
+
+  .btn {
+    font-family: var(--hand); font-weight: 700; font-size: 28px;
+    background: var(--red); color: #fff7ec; border: 0; border-radius: 10px;
+    padding: 6px 22px 8px; cursor: pointer; text-decoration: none; display: inline-block;
+    box-shadow: 0 3px 0 #8f211c;
+  }
+  .btn:active { transform: translateY(2px); box-shadow: 0 1px 0 #8f211c; }
+  .btn.green { background: var(--green); box-shadow: 0 3px 0 #1f5636; }
+  .btn.ghost { background: transparent; color: var(--ink); box-shadow: none; border: 2px dashed var(--ink-soft); font-size: 24px; padding: 3px 16px 5px; }
+  .btn[disabled] { opacity: .5; cursor: not-allowed; }
+  a:focus-visible, button:focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; }
+  .cta { text-align: center; margin: 6px 0 2px; }
+
+  /* Who am I */
+  .who { margin: 16px 0 4px; }
+  .who-label { font-family: var(--hand); font-size: 28px; font-weight: 700; }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 6px; }
+  .chip {
+    font-family: var(--text); font-weight: 800; font-size: 15px; color: var(--ink);
+    background: var(--card); border: 2px solid var(--ink-soft); border-radius: 999px;
+    padding: 6px 16px; cursor: pointer; min-height: 40px;
+  }
+  .chip[aria-pressed="true"] { background: var(--ink); color: #fff; border-color: var(--ink); }
+  .hint { font-size: 14px; color: var(--ink-soft); margin: 8px 0 0; }
+
+  /* Gift cards */
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px; margin-top: 18px; }
+  .card { background: var(--card); border: 1px solid rgba(80, 60, 30, .25); padding: 12px; display: flex; flex-direction: column; gap: 8px; min-width: 0; box-shadow: 0 2px 6px rgba(60, 45, 20, .15); }
+  .card:nth-child(odd) { transform: rotate(-.5deg); } .card:nth-child(even) { transform: rotate(.5deg); }
+  .photo { aspect-ratio: 4 / 3; max-width: 100%; display: grid; place-items: center; text-align: center; padding: 10px; border: 2px dashed rgba(38, 48, 92, .35); font-family: var(--hand); font-size: 24px; line-height: 1.1; color: var(--ink-soft); overflow: hidden; }
+  .photo.has-img { border: 0; padding: 0; background: #fff !important; }
+  .photo img { width: 100%; height: 100%; object-fit: contain; display: block; }
+  .gift-title { font-family: var(--hand); font-weight: 700; font-size: 30px; line-height: 1.05; margin: 0; }
+  .gift-note { margin: 0; font-size: 15px; color: var(--ink-soft); }
+  .gift-link { align-self: flex-start; font-size: 15px; font-weight: 800; color: var(--ink); background: #fbe27a; border-radius: 6px; padding: 5px 12px; text-decoration: underline; text-underline-offset: 3px; box-shadow: 0 2px 0 rgba(120, 90, 10, .35); }
+  .gift-link:hover { background: #f7d44c; }
+  .status { display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap; margin-top: auto; padding-top: 6px; }
+  .pill { font-weight: 800; font-size: 13px; letter-spacing: .04em; text-transform: uppercase; padding: 4px 10px; border-radius: 999px; }
+  .pill.free { background: #dcefe2; color: #1c5a37; }
+  .pill.taken { background: #e8e1d2; color: #5d5441; }
+  .pill.mine { background: var(--ink); color: #fff; }
+  .small-btn { font-family: var(--text); font-weight: 800; font-size: 15px; border: 0; border-radius: 8px; padding: 9px 16px; cursor: pointer; min-height: 40px; background: var(--green); color: #fff; }
+  .small-btn.out { background: transparent; color: var(--red); border: 2px solid var(--red); }
+  .small-btn[disabled] { opacity: .45; cursor: not-allowed; }
+
+  .toast { position: fixed; left: 50%; bottom: calc(18px + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%); background: var(--ink); color: #fff; padding: 10px 18px; border-radius: 10px; font-weight: 600; max-width: calc(100vw - 32px); z-index: 20; }
+
+  .foot { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-top: 22px; font-size: 14px; color: var(--ink-soft); }
+  .foot a { color: var(--ink-soft); }
+
+  /* Parents' page */
+  table { width: 100%; border-collapse: collapse; margin-top: 14px; font-size: 15px; }
+  th, td { text-align: left; padding: 8px 6px; border-bottom: 1px solid var(--paper-line); vertical-align: middle; }
+  th { font-size: 13px; text-transform: uppercase; letter-spacing: .05em; color: var(--ink-soft); }
+  .scroll { overflow-x: auto; }
+  .panel { background: var(--card); border: 1px solid rgba(80, 60, 30, .25); padding: 14px; margin-top: 16px; }
+  .panel p { margin: 4px 0 10px; }
+
+
+  @media (max-width: 520px) {
+    :root { --lh: 38px; }
+    .sheet { padding: 20px 16px 18px; }
+    h1 { font-size: 38px; } h2 { font-size: 34px; }
+    .lined, .hand { font-size: 24px; }
+    .lined .sig { font-size: 30px; }
+    .frame { padding: 10px; }
+    .doodles { flex-wrap: wrap; row-gap: 16px; }
+    .doodles .cta { order: 3; flex: 0 0 100%; margin: 0; }
+    .doodles .cta .btn { display: block; font-size: 30px; padding: 10px 16px 12px; }
+  }
+  @media (prefers-reduced-motion: no-preference) { .btn, .chip, .small-btn { transition: transform .08s; } }
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><filter id="wobble" x="-10%" y="-10%" width="120%" height="120%"><feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="7" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="5"/></filter></svg>
+<main class="frame"><div class="sheet" id="app"></div></main>
+<div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+
+<script src="config.js"></script>
+<script>
+(function () {
+  "use strict";
+
+  /* ---------- Content ---------- */
+  var FAMILY = [
+    { id: "inga", name: "Inga" },
+    { id: "alvyra", name: "Alvyra" },
+    { id: "emilija", name: "Emilija" },
+    { id: "aidas", name: "Aidas" },
+    { id: "alvydas", name: "Alvydas" }
+  ];
+
+  // img: path or data URI of the gift photo. link: shop page. Empty values fall back to a placeholder / a search link.
+  var GIFTS = [
+    { id: "vonia",   title: "Interaktyvus žaisliukas voniai", note: "Kad maudynės būtų žaidimas.",               tint: "#d3e8ef", img: "img/vonia.jpg", link: "https://kidsplay.lt/produkto-kategorija/zaislai-vaikams/vonios-zaislai/" },
+    { id: "lentele", title: "Piešimo lentelė",                note: "Piešia, kiek nori, ir viską ištrina.",       tint: "#f3dfc8", img: "img/lentele.jpg", link: "https://www.pegasas.lt/piesimo-lenta-lcd-maped-creativ-magical-tablet-maxi-5830826/" },
+    { id: "korteles",title: "Žodžių kortelės su paveiksleliais", note: "Rodys pirštuku ir kartos žodžius.",       tint: "#e5e0f2", img: "img/korteles.jpg", link: "https://luloo.lt/products/luloo-skaitymo-delione" },
+    { id: "masina",  title: "Pasispiriama mašinytė",          note: "Pati nuvažiuos, kur tik nori.",              tint: "#f4d6d3", img: "img/masina.jpg", link: "https://kodelciukas.lt/produktas/paspiriama-masinele-140503/" },
+    { id: "vezimelis",title: "Lėlės vežimėlis",               note: "Lėlė vežiojama pasivaikščioti.",             tint: "#f1e6b9", img: "img/vezimelis.jpg", link: "https://littlefoxy.lt/produktas/little-dutch-metalinis-leles-vezimelis/" },
+    { id: "traktorius",title: "Traktoriukas",                 note: "Brrr! Pats svarbiausias ūkio žaislas.",     tint: "#d6e8c9", img: "img/traktorius.jpg", link: "https://www.babycity.lt/lt/john-deere-traktorius-key-n-go-johnny,-47500-4010605-0585" }
+  ];
+
+  /* ---------- Small helpers ---------- */
+  var $app = document.getElementById("app");
+  var $toast = document.getElementById("toast");
+  var toastTimer = null;
+  function toast(msg) {
+    $toast.textContent = msg; $toast.hidden = false;
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function () { $toast.hidden = true; }, 3200);
+  }
+  function lsGet(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
+  function lsSet(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
+  function esc(s) { return String(s).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); }
+  function randomCode() {
+    var a = new Uint8Array(12);
+    (window.crypto || {}).getRandomValues ? crypto.getRandomValues(a) : a.forEach(function (_, i) { a[i] = Math.floor(Math.random() * 256); });
+    return Array.prototype.map.call(a, function (b) { return b.toString(16).padStart(2, "0"); }).join("");
+  }
+  function nameOf(id) { var m = FAMILY.filter(function (f) { return f.id === id; })[0]; return m ? m.name : "?"; }
+
+  /* ---------- State ---------- */
+  var state = {
+    view: "letter",
+    member: "",                         // never remembered: the name picker starts empty on every visit
+    owner: lsGet("luka_owner") || "",   // secret code of this device; decides who may un-reserve
+    res: {},                            // giftId -> {mine}
+    store: null,
+    busy: false
+  };
+  if (!state.owner) { state.owner = randomCode(); lsSet("luka_owner", state.owner); }
+
+  /* ---------- Storage ---------- */
+  var CFG = window.APP_CONFIG || {};
+  var POLL_MS = 5000;
+
+  // The real thing: Supabase, reached only through the functions in supabase/schema.sql.
+  function remoteStore(cfg, owner) {
+    var base = String(cfg.SUPABASE_URL).replace(/\/+$/, "") + "/rest/v1/rpc/";
+    var onRes = null, member = "";
+    function rpc(fn, args) {
+      var headers = { "Content-Type": "application/json", "apikey": cfg.SUPABASE_ANON_KEY };
+      if (/^eyJ/.test(cfg.SUPABASE_ANON_KEY)) headers.Authorization = "Bearer " + cfg.SUPABASE_ANON_KEY;
+      return fetch(base + fn, { method: "POST", headers: headers, body: JSON.stringify(args || {}) }).then(function (r) {
+        return r.text().then(function (t) {
+          if (!r.ok) return Promise.reject({ code: "error" });
+          try { return t ? JSON.parse(t) : null; } catch (e) { return null; }
+        });
+      }, function () { return Promise.reject({ code: "network" }); });
+    }
+    function pull() {
+      return rpc("list_reservations", { p_owner: owner, p_member: member }).then(function (rows) {
+        var m = {};
+        (rows || []).forEach(function (x) { m[x.gift_id] = { mine: !!x.mine }; });
+        if (onRes) onRes(m);
+      }, function () {});
+    }
+    return {
+      kind: "shared",
+      setMember: function (mid) { member = mid || ""; pull(); },
+      start: function (cb) {
+        onRes = cb; pull();
+        setInterval(function () { if (!document.hidden) pull(); }, POLL_MS);
+        document.addEventListener("visibilitychange", function () { if (!document.hidden) pull(); });
+      },
+      reserve: function (gid, mid) {
+        return rpc("reserve_gift", { p_gift: gid, p_member: mid, p_owner: owner }).then(function (ok) {
+          pull(); if (!ok) return Promise.reject({ code: "taken" });
+        });
+      },
+      release: function (gid) {
+        return rpc("release_gift", { p_gift: gid, p_owner: owner, p_member: member }).then(function (res) {
+          pull(); if (res === "not_owner") return Promise.reject({ code: "not_owner" });
+        });
+      }
+    };
+  }
+
+  // Demo mode, used when config.js is missing: everything stays in this one browser.
+  function demoStore(owner) {
+    var K = "luka_demo_v1", mem = { r: {} }, cb = null, member = "";
+    function read() { try { var v = JSON.parse(localStorage.getItem(K)); if (v && v.r) return v; } catch (e) {} return mem; }
+    function write(v) { mem = v; try { localStorage.setItem(K, JSON.stringify(v)); } catch (e) {} emit(); }
+    function view() { var d = read(), m = {}; Object.keys(d.r).forEach(function (g) { m[g] = { mine: d.r[g].owner === owner || (!!member && d.r[g].member === member) }; }); return m; }
+    function emit() { if (cb) cb(view()); }
+    return {
+      kind: "demo",
+      setMember: function (mid) { member = mid || ""; emit(); },
+      start: function (f) { cb = f; emit(); window.addEventListener("storage", emit); },
+      reserve: function (gid, mid) {
+        var d = read(); if (d.r[gid]) return Promise.reject({ code: "taken" });
+        d.r[gid] = { member: mid, owner: owner }; write(d); return Promise.resolve();
+      },
+      release: function (gid) {
+        var d = read(); if (!d.r[gid]) return Promise.resolve();
+        if (d.r[gid].owner !== owner && d.r[gid].member !== member) return Promise.reject({ code: "not_owner" });
+        delete d.r[gid]; write(d); return Promise.resolve();
+      }
+    };
+  }
+
+  /* ---------- Views ---------- */
+  // Toddler-painting style: fat uneven strokes, paint that slips outside the lines (see #wobble filter).
+  function tree() {
+    return '<svg viewBox="0 0 100 130" aria-hidden="true" focusable="false"><g filter="url(#wobble)" stroke-linecap="round" stroke-linejoin="round">' +
+      '<g transform="translate(3,3)" fill="#4f9b5e" opacity=".9" stroke="none">' +
+        '<path d="M50 14 L26 52 L74 52 Z"/><path d="M50 34 L18 82 L82 82 Z"/><path d="M50 58 L10 112 L90 112 Z"/><rect x="43" y="112" width="14" height="14"/></g>' +
+      '<g fill="none" stroke="#1f6b3a" stroke-width="4.5">' +
+        '<path d="M50 14 L26 52 L74 52 Z"/><path d="M50 34 L18 82 L82 82 Z"/><path d="M50 58 L10 112 L90 112 Z"/></g>' +
+      '<rect x="43" y="112" width="14" height="14" fill="#a8693a" stroke="#6d3f1f" stroke-width="4"/>' +
+      '<polygon points="50,2 54,11 63,11 56,17 59,26 50,20 41,26 44,17 37,11 46,11" fill="#f4c93a" stroke="#e08a1e" stroke-width="3.5"/>' +
+      '<circle cx="40" cy="48" r="5" fill="#d8352d"/><circle cx="60" cy="72" r="5.5" fill="#3f6fd1"/><circle cx="34" cy="94" r="5.5" fill="#f4c93a"/><circle cx="68" cy="100" r="5" fill="#d8352d"/>' +
+      '</g></svg>';
+  }
+  function bunny() {
+    return '<svg viewBox="0 0 100 130" aria-hidden="true" focusable="false"><g filter="url(#wobble)" stroke-linecap="round" stroke-linejoin="round">' +
+      '<g transform="translate(3,3)" fill="#c9b6e8" opacity=".9" stroke="none">' +
+        '<ellipse cx="50" cy="110" rx="27" ry="19"/><ellipse cx="35" cy="28" rx="9" ry="24" transform="rotate(-8 35 28)"/><ellipse cx="63" cy="26" rx="9" ry="24" transform="rotate(8 63 26)"/><circle cx="50" cy="70" r="25"/></g>' +
+      '<g fill="none" stroke="#5f4b8f" stroke-width="4.5">' +
+        '<ellipse cx="50" cy="110" rx="27" ry="19"/><ellipse cx="35" cy="28" rx="9" ry="24" transform="rotate(-8 35 28)"/><ellipse cx="63" cy="26" rx="9" ry="24" transform="rotate(8 63 26)"/><circle cx="50" cy="70" r="25"/></g>' +
+      '<ellipse cx="35" cy="30" rx="4" ry="15" transform="rotate(-8 35 30)" fill="#f5a9bb"/><ellipse cx="63" cy="28" rx="4" ry="15" transform="rotate(8 63 28)" fill="#f5a9bb"/>' +
+      '<circle cx="41" cy="66" r="3.5" fill="#26305c"/><circle cx="59" cy="66" r="3.5" fill="#26305c"/>' +
+      '<path d="M45 75 L55 75 L50 81 Z" fill="#e5708d" stroke="#e5708d" stroke-width="2"/>' +
+      '<path d="M50 81 Q45 88 40 84 M50 81 Q55 88 60 84" fill="none" stroke="#5f4b8f" stroke-width="3"/>' +
+      '<path d="M28 76 L12 72 M28 82 L12 86 M72 76 L88 72 M72 82 L88 86" fill="none" stroke="#5f4b8f" stroke-width="2.5"/>' +
+      '</g></svg>';
+  }
+
+  function letterView() {
+    return '' +
+      '<h1 class="tilt-a">Brangus Kalėdų Seneli,</h1>' +
+      '<div class="lined">' +
+        '<p>Mano vardas Luka. Man 1,5 metų ir aš jau einu į darželį. Darželyje man labai patinka žaisti su vaikais ir klausytis dainelių. Aš jau moku rodyti pirštuku, sakyti „ne“ ir beveik moku bėgioti. Labai myliu savo geriausią draugą triušiuką.</p>' +
+        '<p>Šiemet buvau labai gera mergaitė. Beveik visada. Tik kartais priterliodavau maistu grindis, papešiodavau tualetinį popierių ir neleisdavau tėveliams ramiai miegoti naktį.</p>' +
+        '<p>Aš labai norėčiau gauti kokių nors dovanėlių. Parašiau jų sąrašą, kad tau būtų lengviau sugalvoti, ką man padovanoti.</p>' +
+        '<p class="sig">Myliu, Luka</p>' +
+      '</div>' +
+      '<div class="doodles"><span>' + tree() + '</span>' +
+        '<span class="cta"><a class="btn" href="#sarasas">Žiūrėti Lukos norų sąrašą</a></span>' +
+        '<span>' + bunny() + '</span></div>' +
+      foot();
+  }
+
+  function foot() { return ""; }
+
+  function whoBlock() {
+    var chips = FAMILY.map(function (f) {
+      return '<button class="chip" type="button" data-member="' + f.id + '" aria-pressed="' + (state.member === f.id) + '">' + f.name + '</button>';
+    }).join("");
+    var hint = state.member
+      ? 'Rezervuoji kaip <strong>' + esc(nameOf(state.member)) + '</strong>. Kitiems matysis tik „Rezervuota“.'
+      : 'Pirmiausia pasirink savo vardą, tada galėsi rezervuoti dovaną.';
+    return '<div class="who"><div class="who-label">Kas tu esi?</div><div class="chips" role="group" aria-label="Pasirink savo vardą">' + chips + '</div><p class="hint">' + hint + '</p></div>';
+  }
+
+  function giftCard(g) {
+    var r = state.res[g.id];
+    var photo = g.img ? '<img src="' + esc(g.img) + '" alt="' + esc(g.title) + '">' : 'Čia bus nuotrauka';
+    var link = g.link || ("https://www.google.com/search?tbm=isch&q=" + encodeURIComponent(g.title + " kūdikiui"));
+    var status;
+    if (!r) {
+      status = '<span class="pill free">Laisva</span><button class="small-btn" type="button" data-reserve="' + g.id + '"' + (state.member ? "" : " disabled") + '>Rezervuoti</button>';
+    } else if (r.mine) {
+      status = '<span class="pill mine">Rezervavai tu</span><button class="small-btn out" type="button" data-release="' + g.id + '">Atsisakyti</button>';
+    } else {
+      status = '<span class="pill taken">Rezervuota</span>';
+    }
+    return '<article class="card"><div class="photo' + (g.img ? " has-img" : "") + '" style="background:' + g.tint + '">' + photo + '</div>' +
+      '<h3 class="gift-title">' + esc(g.title) + '</h3><p class="gift-note">' + esc(g.note) + '</p>' +
+      '<a class="gift-link" href="' + esc(link) + '" target="_blank" rel="noopener">Pavyzdys parduotuvėje →</a>' +
+      '<div class="status">' + status + '</div></article>';
+  }
+
+  function listView() {
+    return '<h2 class="tilt-b">Mano norų sąrašas</h2>' +
+      '<p class="hand" style="margin:6px 0 0">Ačiū, kad padėsi Seneliui!</p>' +
+      whoBlock() +
+      '<div class="grid">' + GIFTS.map(giftCard).join("") + '</div>' +
+      '<p class="cta" style="margin-top:22px"><a class="btn ghost" href="#">← Atgal į laišką</a></p>' + foot();
+  }
+
+  function render() {
+    var v = state.view;
+    $app.innerHTML = v === "list" ? listView() : letterView();
+  }
+
+  /* ---------- Actions ---------- */
+  function msgFor(e) {
+    var c = e && e.code;
+    if (c === "taken") return "Atsiprašome, ši dovana ką tik buvo rezervuota.";
+    if (c === "not_owner") return "Šią rezervaciją gali atšaukti tik tas, kas ją padarė.";
+    return "Nepavyko išsaugoti. Pabandyk dar kartą.";
+  }
+  function act(p, okMsg) {
+    if (state.busy) return;
+    state.busy = true;
+    p().then(function () { if (okMsg) toast(okMsg); }, function (e) { toast(msgFor(e)); }).then(function () { state.busy = false; });
+  }
+
+  document.addEventListener("click", function (ev) {
+    var t = ev.target.closest("[data-member],[data-reserve],[data-release]");
+    if (!t || !state.store) return;
+    var s = state.store;
+    if (t.hasAttribute("data-member")) {
+      state.member = t.getAttribute("data-member"); s.setMember(state.member); render();
+    } else if (t.hasAttribute("data-reserve")) {
+      if (!state.member) { toast("Pirmiausia pasirink savo vardą."); return; }
+      act(function () { return s.reserve(t.getAttribute("data-reserve"), state.member); }, "Dovana rezervuota. Ačiū!");
+    } else if (t.hasAttribute("data-release")) {
+      act(function () { return s.release(t.getAttribute("data-release")); }, "Rezervacija atšaukta.");
+    }
+  });
+
+  function route() {
+    var h = (location.hash || "").replace("#", "");
+    state.view = h === "sarasas" ? "list" : "letter";
+    render();
+    window.scrollTo(0, 0);
+  }
+  window.addEventListener("hashchange", route);
+
+  /* ---------- Start ---------- */
+  route();
+  var lastRes = "";
+  state.store = (CFG.SUPABASE_URL && CFG.SUPABASE_ANON_KEY) ? remoteStore(CFG, state.owner) : demoStore(state.owner);
+  state.store.start(function (m) {
+    var snap = JSON.stringify(m);
+    if (snap === lastRes) return;            // nothing changed: leave the screen alone
+    lastRes = snap; state.res = m;
+    render();
+  });
+})();
+</script>
+</body>
+</html>

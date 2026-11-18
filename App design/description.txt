@@ -1,0 +1,35 @@
+LUKA'S LETTER TO SANTA - PROJECT DESCRIPTION
+
+Luka is 18 months old. This is her Christmas list, and she cannot write it
+herself, so we are writing it for her.
+
+We are building a small, interactive web app for our family (grandparents,
+aunts, uncles, godparents). It does two things.
+
+1. A letter from Luka to Santa
+   A mock-up letter written in Luka's voice, in Lithuanian. It is funny and
+   warm, and it tells Santa that she was a very good girl this year and only
+   sometimes naughty (with a few honest examples). It looks handwritten by
+   Luka, on cream paper with a red and green candy-stripe border, with small
+   Santa and nutcracker drawings.
+
+2. A shared present list
+   A list of presents Luka would really like, each with a picture, a short
+   note, and a link to an example in a shop. Family members pick their name
+   from a list and tick a box to reserve a gift. A reservation is saved and
+   shown as "reserved" to everyone who opens the app, so the same gift is never
+   bought twice (no ten Lego sets for Luka). Only the person who reserved a
+   gift can cancel it. Parents do not see who reserved what in the final app;
+   a test mode shows it before launch so we can check that it works.
+
+Who it is for: close family, mostly on phones. Many are not very technical, so
+it must be simple: open the link, read the letter, pick a gift.
+
+What success looks like:
+- Family members can open the app from a single link, with no account needed.
+- Everyone sees the same, up-to-date list of reserved and free gifts.
+- Two people cannot reserve the same gift at the same time.
+- Nobody ends up buying a duplicate gift.
+
+Built by Milda and Justas as the Xmas project in the Turing College
+"Building with AI" course, using Claude Code.
