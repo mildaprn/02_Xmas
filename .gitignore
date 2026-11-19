@@ -1,4 +1,23 @@
+# Secrets and local config. Document variable names in the README instead.
 .env
 .env.*
+!.env.example
+
+# Real Supabase URL and key. The config.example.js templates stay tracked.
+**/config.js
+
+# Claude Code: local-only settings
+.claude/settings.local.json
+
+# macOS and editor clutter
 .DS_Store
-site/config.js
+.vscode/
+.idea/
+*.swp
+
+# Logs and tooling output (for if a build step is added)
+*.log
+node_modules/
+.netlify/
+.supabase/
+supabase/.temp/
